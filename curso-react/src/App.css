@@ -27,7 +27,23 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.borda {
+  border: 1px solid #DCDCDC;
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin: 10px;
+}
+
+.centraliza {
+  text-align: center;
+}
+
+.largura {
+  width: min-content;
 }
