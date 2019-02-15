@@ -13,14 +13,30 @@ class App extends Component {
     super(props);
 
     this.state = {
-		contatos: []
+      contatos: []
     };
 
     this.remover = this.remover.bind(this);
+    this.listar = this.listar.bind(this);
+    this.adicionar = this.adicionar.bind(this);
   }
 
-  async componentDidMount() {
-	  const contatos = await ContatosService.listar();
+  adicionar(contato) {
+    if (contato.imagem !== '' && contato.nome !== '' && contato.telefone !== '') {
+        ContatosService.adicionar(contato)
+          .then(()=>{
+            this.listar();
+          });
+        
+    }
+  }
+
+  componentDidMount() {
+    this.listar();
+  }
+
+  async listar(){
+    const contatos = await ContatosService.listar();
 	  this.setState({
 		  contatos
 	  });
@@ -30,13 +46,13 @@ class App extends Component {
     const { contatos } = this.state,
       index = contatos.findIndex(contato => contato.id === contatoId);
     
-	contatos.splice(index, 1);
+    contatos.splice(index, 1);
 
-	ContatosService.remover(contatoId);
+    ContatosService.remover(contatoId);
 
     this.setState({
       contatos
-    })
+    });
       
   }
 
@@ -46,8 +62,6 @@ class App extends Component {
 
     return (
       <div>
-        {/* < CalculoImc />  */}
-        {/* <CalculoImposto valorLimite="1500" taxa="20"/> */}
         <div className="menu">
           <ul>
             <li>
@@ -58,7 +72,7 @@ class App extends Component {
           </ul>
         </div>
 		<div>
-			<ContatoCadastro/>
+			<ContatoCadastro onAdicionar={this.adicionar}/>
 		</div>
       </div>
     );
