@@ -1,0 +1,22 @@
+{
+  "contatos": [
+    {
+      "id": 1,
+      "imagem": "./imagens/imagem1.jpg",
+      "nome": "Choquito",
+      "telefone": "(11) 96587-5684"
+    },
+    {
+      "id": 3,
+      "imagem": "./imagens/imagem3.jpg",
+      "nome": "Mourão",
+      "telefone": "(11) 96587-5684"
+    },
+    {
+      "imagem": "./imagens/imagem2.jpg",
+      "nome": "OI",
+      "telefone": "1651621",
+      "id": 7
+    }
+  ]
+}

@@ -47,3 +47,16 @@
 .largura {
   width: min-content;
 }
+
+.linha{
+  display: inline-block;
+}
+
+.menu ul{
+  padding: 10px;
+  list-style: none;
+}
+
+.botao {
+  margin: 5px;
+}
