@@ -244,6 +244,34 @@ No caso de um loop, é necessário usar o map no elemento, que é equivalente a 
 
 Da mesma forma que é possível passar um valor, é possível passar uma função dentro de uma prop, dessa forma a classe do componente pode redirecionar a função para aquela definida na prop, no caso de passar um método da própria classe como prop de um componente, a classe do componente pode chamar a função externa.
 
+Os componentes compartilham funcionalidades e dados com as props, no caso de um componente realiza uma função e em seguida um outro componente precisa realizar outra função, utiliza-se listeners que recebem funções do componente que são chamadas em resposta:
+
+```jsx
+<div>
+    <!-- A Prop "onAdicionar" tem o valor de um método chamado adicionar -->
+    <ContatoCadastro onAdicionar={this.adicionar}/>
+</div>
+```
+
+```jsx
+<div className="btn btn-send">
+    <!-- Relaciona o evento de click ao método enviado via prop -->
+    <button onClick={this.onAdicionar}>Cadastrar</button>
+</div>
+```
+```ts
+// chama a função passada via prop
+ onAdicionar() {
+    const { contato } = this.state;
+    contato.imagem =  `${contato.imagem}${contato.imagem}`;
+    this.setState({
+        contato
+    });
+    // A função que 
+    this.props.onAdicionar(contato);
+}
+```
+
 ## Métodos do Ciclo de Vida
 
 - componentWillMount: Executa imediatamente antes de renderizar o componente;
@@ -256,4 +284,32 @@ Da mesma forma que é possível passar um valor, é possível passar uma funçã
 
 ## Requisições e Respostas
 
-O recomendado é realizar requisições no  método componentDidMount e de forma asssíncrona utilizando `async`, utilizando `await` na execução da requisição
+O recomendado quando necessário informações que serão apresentadas, é realizar requisições no  método componentDidMount e de forma asssíncrona utilizando `async`, utilizando `await` na execução da requisição. 
+
+```ts
+componentDidMount() {
+this.listar();
+}
+
+async listar(){
+const contatos = await ContatosService.listar();
+    this.setState({
+        contatos
+    });
+}
+```
+
+As requisições são feitas através da função `fetch`, que funciona baseada em Promise:
+
+```ts
+adicionar(contato) {
+    var headers = new Headers();
+    headers.set("Content-Type", "application/json");
+    return fetch("http://localhost:3200/contatos/", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(contato)
+        })
+        .then(response => response.json())
+}
+```

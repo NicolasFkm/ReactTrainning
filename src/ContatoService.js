@@ -1,10 +1,10 @@
 export const ContatosService = {
     listar() {
-        return fetch("http://localhost:3200/contatos")
+        return fetch("http://localhost:4000/contatos")
             .then(response => response.json())
     },
     remover(id) {
-        return fetch(`http://localhost:3200/contatos/${id}`, {
+        return fetch(`http://localhost:4000/contatos/${id}`, {
                 method: 'DELETE'
             })
             .then(response => response.json())
@@ -12,7 +12,7 @@ export const ContatosService = {
     adicionar(contato) {
         var headers = new Headers();
         headers.set("Content-Type", "application/json");
-        return fetch("http://localhost:3200/contatos/", {
+        return fetch("http://localhost:4000/contatos/", {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify(contato)

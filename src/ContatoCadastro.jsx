@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ContatosService } from './ContatoService';
 
 export default class ContatoCadastro extends Component {
 
@@ -13,7 +12,7 @@ export default class ContatoCadastro extends Component {
         super(props);
         this.state = {
             contato: {
-                imagem: '',
+                imagem: './imagens/',
                 nome: '',
                 telefone: ''
             }
@@ -34,7 +33,7 @@ export default class ContatoCadastro extends Component {
 
     onAdicionar() {
         const { contato } = this.state;
-        contato.imagem = `./imagens/${contato.imagem}`;
+        contato.imagem =  `${contato.imagem}${contato.imagem}`;
         this.setState({
             contato
         });
