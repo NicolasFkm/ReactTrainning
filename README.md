@@ -1,6 +1,6 @@
 # ReactJS
 
-<small>Obs: Projetos com fins de testes e treino, sem estrutura ou padrão de código profissional bem definido</small>
+Esse repositório é dividido em duas partes principais: Concepts, na qual são diversos componentes e testes para absorver o conceito do framework; e a Project no qual é um projeto mais estruturado.
 
 ## Indrodução
 

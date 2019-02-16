@@ -1,0 +1,18 @@
+{
+  "name": "webservice-cursos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/loader.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.13",
+    "node-restful": "^0.2.6",
+    "nodemon": "^1.18.10"
+  }
+}
