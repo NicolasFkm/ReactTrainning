@@ -313,3 +313,105 @@ adicionar(contato) {
         .then(response => response.json())
 }
 ```
+
+## Redux
+
+Vem de dois conceitos, o Reducer e o Flux. Uma aplicação tem dois elementos centrais: as `Props` e o `State`. Um estado é enviado para outro componente via prop, depois passado para o state para ser manipulado. Com o Redux, todos os dados são centralizados no __`STORE`__, ele é único e pode ser acessado por qualquer componente, dessa forma o compartilhamento é mais simples.
+
+A interação com a View chama um `action`, que é um objeto que representa a ação que ocorreu na View, nada mais do que um objeto que identifica a ação realizada e possui um valor que será utilizado para atualizar a store, o action é enviado para o reducer através de um `"dispatching"`. O Reducer que é responsável por especificar como o state será alterado, envia o estado atualizado para a store. 
+
+É comum criar um reducer para cada componente ou grupo de componente definido e depois combiná-los atravès do "combineReducer".
+
+
+```ts
+export const inputReducer = (state, action) => {
+    switch (action.type) {
+        case '':
+            
+            break;
+    
+        default:
+            break;
+    }
+};
+```
+
+```ts
+import { inputReducer } from './inputReducer'
+import { combineReducers } from "redux";
+
+export const Reducers = combineReducers({
+    inputButton: inputReducer
+})
+```
+
+O store é único e precisa ser definido na aplicação, para mapear os reducers existentes. 
+
+```ts
+import { createStore } from "redux";
+import { Reducers } from '../reducers/reducers';
+
+export const store = createStore(Reducers);
+```
+
+Na criação do action, como já comentado anteriormente, o tipo é obrigatório, mas para definí-lo é recomendado criar um arquivo com os possíveis tipos como constantes que podem ser importados para o arquivo no qual os actions são definidos.
+
+```ts
+export const CLICK_BUTTON = 'CLICK_BUTTON';
+```
+
+```ts
+import * as ActionTypes from "./actionTypes";
+
+export const clickButton = valor => ({
+    type: ActionTypes.CLICK_BUTTON,
+    novoValor: valor
+})
+```
+
+Quando a action é disparada, o objeto executado é passado como parametro para o reducer, enquanto o parâmetro "state"(ou o nome desejado no primeiro parâmtro) é o state atual, caso não exista é necessário que tenha um estado inicial. Dessa forma são necessárias algumas alterações na definição do reducer, além de implementar como vai lidar com o action que no caso utiliza o operador spread que permite a evolução do estado, mantendo do jeito que está e modificando apenas o necessário, é necessário definir um estado inicial caso o "state" não esteja definido:
+
+```ts
+import CLICK_BUTTON from '../actions/actionTypes';
+
+const estadoInicial = {
+    novoValor: ''
+}
+
+export const inputReducer = (state = estadoInicial, action) => {
+    switch (action.type) {
+        case CLICK_BUTTON:
+            return{
+                ...state,
+                novoValor: action.novoValor
+            }
+            break;
+    
+        default:
+            break;
+    }
+};
+```
+
+Por último é necessário atrelar toda essa estrutura do redux na aplicação em si, para isso é necessário um componente do "react-redux" chamado Provider, como nesse caso será utilizado na aplicação toda, é necessário implementá-lo no index.js:
+
+```ts
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+import { Provider } from "react-redux";
+import { Store } from "./store/store";
+
+ReactDOM.render(
+    <Provider store={Store}>
+        <App />
+    </Provider>, 
+    document.getElementById('root')
+);
+
+serviceWorker.unregister();
+
+```
