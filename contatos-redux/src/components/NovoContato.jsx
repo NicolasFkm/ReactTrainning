@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 export default class NovoContato extends Component {
 
-    static defaultValue = {
-        imagem: '',
-        nome: '',
-        telefone: ''
-    };
+    // static defaultValue = {
+    //     imagem: '',
+    //     nome: '',
+    //     telefone: ''
+    // };
 
     constructor(props) {
         super(props);

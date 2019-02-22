@@ -415,3 +415,30 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 ```
+
+O `Redux-Thunk` lida com ações assíncronas no Redux, para que espere antes de enviar os dados. Ele funciona como um middleware entre o Action e o Reducer, recupera o que o Action contém e se responsabiliza pelo envio para o reducer. Ele é configurado na definição da store.
+
+```ts
+import { CONTATO_LISTAR } from './inputTypes';
+import { ContatosService } from '../services/ContatosService';
+
+export const listar = () =>
+{
+    return async (dispatch) => {
+        let contatos = await ContatosService.listar();
+        dispatch({
+            type: CONTATO_LISTAR,
+            contatos
+        });
+    }
+}
+```
+
+```ts
+import { createStore, applyMiddleware } from "redux";
+import ThunkMiddleware from "redux-thunk";
+import { Reducers } from '../reducers/RootReducers';
+
+export const Store = createStore(Reducers);
+Store.applyMiddleware(ThunkMiddleware);
+```

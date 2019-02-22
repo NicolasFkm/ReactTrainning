@@ -1,0 +1,1 @@
+export const CONTATO_LISTAR = 'CONTATO_LISTAR';
