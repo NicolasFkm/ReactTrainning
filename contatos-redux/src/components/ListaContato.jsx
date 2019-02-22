@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import ItemContato from './ItemContato';
 import { connect } from 'react-redux';
-import { removeContato  } from '../actions/ContatosActions'
+import { removeContato, listar } from '../actions/ContatosActions'
 import { bindActionCreators } from 'redux';
 
 class ListaContato extends Component {
+
+    componentDidUpdate(nextProps) {
+        if (nextProps.contatos !== this.props.contatos) {
+            this.props.listar();
+        }
+    }
 
     render() {
         const { props } = this;
@@ -14,7 +20,10 @@ class ListaContato extends Component {
                     <ul>
                         <li>
                             {props.contatos.map(contato =>
-                                <ItemContato key={contato.id} contato={contato} onRemover={()=>{props.removeContato(contato.id)}} />
+                                <ItemContato key={contato.id}
+                                    contato={contato}
+                                    onRemover={() => { props.removeContato(contato.id) }}
+                                />
                             )}
                         </li>
                     </ul>
@@ -29,7 +38,8 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    removeContato
+    removeContato,
+    listar
 }, dispatch);
 
 export default connect(mapStateToProp, mapDispatchToProps)(ListaContato)

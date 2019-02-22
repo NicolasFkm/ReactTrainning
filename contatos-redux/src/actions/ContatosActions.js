@@ -27,18 +27,21 @@ export const mudaTextoTelefone = e => ({
 });
 
 export const clickButton = item => {
-    ContatosService.adicionar(item)
+    
+    let contato = ContatosService.adicionar(item);
     return {
         type: CONTATO_INCLUIR,
-        novoContato: item
-    };
+        novoContato: contato
+    }
 
 }
 
 export const removeContato = id => {
+
     let contato = ContatosService.remover(id);
     return {
         type: CONTATO_REMOVER,
         contatoRemovido: contato
     }
+    
 }

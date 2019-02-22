@@ -13,10 +13,10 @@ export const ContatosService = {
         var headers = new Headers();
         headers.set("Content-Type", "application/json");
         return fetch("http://localhost:4000/contatos/", {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(contato)
-            })
-            .then(response => response.json())
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(contato)
+        })
+        .then(response => response.json());
     }
 }

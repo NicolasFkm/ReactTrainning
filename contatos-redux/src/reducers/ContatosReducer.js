@@ -36,21 +36,13 @@ const ContatosReducer = (state = estadoInicial, action) => {
 
         
         case Constantes.CONTATO_INCLUIR:
-            if(action.contatos != undefined){
-                var contatos = action.contatos.push(action.novoContato)
-            }
             return {
-                ...state,
-                contatos
+                ...state
             }
 
         case Constantes.CONTATO_REMOVER:
-            
-            var index = state.contatos.indexOf(action.contatoRemovido);    
-            state.contatos.splice(index, 1);
             return {
-                ...state,
-                contatos: state.contatos
+                ...state
             }
 
         default:
