@@ -1,40 +1,20 @@
 import React, { Component } from 'react';
-// import '../App.css';
 import ItemContato from './ItemContato';
-import NovoContato from './NovoContato';
-import { ContatosService } from '../services/ContatosService';
+import { connect } from 'react-redux';
+import { removeContato  } from '../actions/ContatosActions'
+import { bindActionCreators } from 'redux';
 
-export default class ListaContato extends Component {
-
-    constructor(props) {
-        super(props);
-        this.remover = this.remover.bind(this);
-    }
-
-    remover(contatoId) {
-        const { contatos } = this.props,
-            index = contatos.findIndex(contato => contato.id === contatoId);
-
-        contatos.splice(index, 1);
-
-        ContatosService.remover(contatoId);
-
-        this.setState({
-            contatos
-        });
-
-    }
+class ListaContato extends Component {
 
     render() {
         const { props } = this;
-
         return (
             <div>
                 <div className="menu">
                     <ul>
                         <li>
                             {props.contatos.map(contato =>
-                                <ItemContato key={contato.id} contato={contato} onRemover={this.remover} />
+                                <ItemContato key={contato.id} contato={contato} onRemover={()=>{props.removeContato(contato.id)}} />
                             )}
                         </li>
                     </ul>
@@ -43,3 +23,13 @@ export default class ListaContato extends Component {
         )
     }
 }
+
+const mapStateToProp = state => ({
+    contatos: state.ContatosReducer.contatos
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    removeContato
+}, dispatch);
+
+export default connect(mapStateToProp, mapDispatchToProps)(ListaContato)

@@ -29,7 +29,7 @@ class ItemContato extends Component {
 
             <div className='linha borda'>
                 <div>
-                    <button type="submit" className="botao" onClick={this.remover}>
+                    <button type="submit" className="botao align-right" onClick={this.remover}>
                         x
                 </button>
                 </div>

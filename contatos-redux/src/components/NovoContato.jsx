@@ -1,65 +1,56 @@
 import React, { Component } from 'react';
+import { mudaTextoImagem, mudaTextoNome, mudaTextoTelefone, clickButton  } from '../actions/ContatosActions'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class NovoContato extends Component {
-
-    // static defaultValue = {
-    //     imagem: '',
-    //     nome: '',
-    //     telefone: ''
-    // };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            contato: {
-                imagem: './imagens/',
-                nome: '',
-                telefone: ''
-            }
-        };
-        this.onAdicionar = this.onAdicionar.bind(this);
-        this.changeData = this.changeData.bind(this);
-    }
-
-    changeData(event) {
-        const { contato } = this.state;
-        const { target } = event;
-        const { name, value } = target;
-        contato[name] = value;
-        this.setState({
-            contato
-        });
-    }
-
-    onAdicionar() {
-        const { contato } = this.state;
-        contato.imagem =  `${contato.imagem}${contato.imagem}`;
-        this.setState({
-            contato
-        });
-
-        this.props.onAdicionar(contato);
-    }
+class NovoContato extends Component {
 
     render() {
-        const { contato } = this.state;
+        const { clickButton, mudaTextoImagem, mudaTextoNome, mudaTextoTelefone, imagem, nome, telefone } = this.props;
 
         return (
-            <div className="form">
-                <div className="form-field">
-                    <input name="imagem" type="text" value={contato.imagem} placeholder="Digite seu imagem" onChange={this.changeData} />
-                </div>
-                <div className="form-field">
-                    <input name="nome" type="text" value={contato.nome} placeholder="Digite seu nome" onChange={this.changeData} />
-                </div>
-                <div className="form-field">
-                    <input name="telefone" type="text" value={contato.telefone} placeholder="Digite seu telefone" onChange={this.changeData} />
-                </div>
-                <div className="btn btn-send">
-                    <button onClick={this.onAdicionar}>Cadastrar</button>
+            <div className="centraliza">
+                <div className="form borda">
+                    <div className="form-field">
+                        <input name="nome" type="text" value={nome} placeholder="Digite seu nome" onChange={mudaTextoNome} />
+                    </div>
+                    <div className="form-field">
+                        <input name="telefone" type="text" value={telefone} placeholder="Digite seu telefone" onChange={mudaTextoTelefone} />
+                    </div>
+                    <div className="form-field">
+                        <input name="imagem" type="text" value={imagem} placeholder="Digite seu imagem" onChange={mudaTextoImagem} />
+                    </div>
+                    <div className="btn btn-send">
+                        <button 
+                        onClick={() => { clickButton({
+                                nome, 
+                                telefone,
+                                imagem,
+                            })
+                        }}>
+                            Cadastrar
+                        </button>
+                    </div>
                 </div>
             </div>
         );
     }
 
 }
+
+const mapStateToProps = state => ({
+    nome: state.ContatosReducer.nome,
+    telefone: state.ContatosReducer.telefone,
+    imagem: state.ContatosReducer.imagem
+});
+
+const mapDispatchToProps = dispatch => 
+    bindActionCreators(
+        {
+            clickButton, 
+            mudaTextoImagem,
+            mudaTextoNome,
+            mudaTextoTelefone
+        }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(NovoContato);

@@ -13,22 +13,22 @@
       "id": 3
     },
     {
-      "imagem": "./imagens/imagem5.jpg",
-      "nome": "Nicolas",
-      "telefone": "1198465413521",
-      "id": 6
-    },
-    {
+      "nome": "Reduxzada2",
+      "telefone": "1198465121",
       "imagem": "./imagens/imagem2.jpg",
-      "nome": "Torta de Morango",
-      "telefone": "11964321345",
-      "id": 7
+      "id": 4
     },
     {
-      "imagem": "./imagens/imagem4.jpg",
-      "nome": "Torta de Limão",
-      "telefone": "11964321345",
-      "id": 8
+      "nome": "Reduxzada2",
+      "telefone": "1198465121",
+      "imagem": "./imagens/imagem2.jpg",
+      "id": 5
+    },
+    {
+      "nome": "Reduxzada",
+      "telefone": "1198465121",
+      "imagem": "./imagens/imagem2.jpg",
+      "id": 6
     }
   ]
 }

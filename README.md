@@ -439,6 +439,39 @@ import { createStore, applyMiddleware } from "redux";
 import ThunkMiddleware from "redux-thunk";
 import { Reducers } from '../reducers/RootReducers';
 
-export const Store = createStore(Reducers);
-Store.applyMiddleware(ThunkMiddleware);
+export const Store = createStore(Reducers, applyMiddleware(ThunkMiddleware));
+```
+
+No final do componente é necessário mapear o estado para as props, para isso é necessário utilizar o connect do pacote react-redux e exportá-lo.
+
+```ts
+// O estado retornado no caso é a própria lista de contatos
+const mapStateToProps = state => ({
+  contatos: state.ContatosReducer
+});
+
+
+// export default App;
+export default connect(mapStateToProps)(App)
+```
+
+Caso tenha além de propriedades, métodos que serão utilizados no componentes vindos da store:
+
+```ts
+const mapStateToProps = state => ({
+    nome: state.ContatosReducer.nome,
+    telefone: state.ContatosReducer.telefone,
+    imagem: state.ContatosReducer.imagem
+});
+
+const mapDispatchToProps = dispatch => 
+    bindActionCreators(
+        {
+            clickButton, 
+            mudaTextoImagem,
+            mudaTextoNome,
+            mudaTextoTelefone
+        }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(NovoContato);
 ```
