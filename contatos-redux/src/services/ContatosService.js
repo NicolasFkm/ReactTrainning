@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+const URL = "http://localhost:4000";
 export const ContatosService = {
     listar() {
         return fetch("http://localhost:4000/contatos")
@@ -10,13 +13,6 @@ export const ContatosService = {
             .then(response => response.json())
     },
     adicionar(contato) {
-        var headers = new Headers();
-        headers.set("Content-Type", "application/json");
-        return fetch("http://localhost:4000/contatos/", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(contato)
-        })
-        .then(response => response.json());
+        return axios.post(`${URL}/contatos`, contato)
     }
 }

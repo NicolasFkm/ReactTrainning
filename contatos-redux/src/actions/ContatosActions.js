@@ -27,21 +27,22 @@ export const mudaTextoTelefone = e => ({
 });
 
 export const clickButton = item => {
-    
-    let contato = ContatosService.adicionar(item);
-    return {
-        type: CONTATO_INCLUIR,
-        novoContato: contato
+    return async (dispatch) => {
+        let contato = await ContatosService.adicionar(item);
+        console.log(contato);
+        dispatch({
+            type: CONTATO_INCLUIR,
+            novoContato: item
+        });
     }
-
 }
 
 export const removeContato = id => {
-
-    let contato = ContatosService.remover(id);
-    return {
-        type: CONTATO_REMOVER,
-        contatoRemovido: contato
+    return async (dispatch) => {
+        await ContatosService.remover(id);
+        dispatch({
+            type: CONTATO_REMOVER,
+            contatoRemovidoId: id
+        });
     }
-    
 }

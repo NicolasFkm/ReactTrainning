@@ -1,6 +1,8 @@
 import * as Constantes from '../actions/inputTypes';
 
 const estadoInicial = {
+    novoContato: {},
+    contatoRemovido: {},
     contatos: [],
     imagem: '',
     nome: '',
@@ -37,12 +39,14 @@ const ContatosReducer = (state = estadoInicial, action) => {
         
         case Constantes.CONTATO_INCLUIR:
             return {
-                ...state
+                ...state,
+                novoContato: action.novoContato
             }
 
         case Constantes.CONTATO_REMOVER:
             return {
-                ...state
+                ...state,
+                contatoRemovido: action.contatoRemovido
             }
 
         default:
