@@ -46,7 +46,7 @@ const ContatosReducer = (state = estadoInicial, action) => {
         case Constantes.CONTATO_REMOVER:
             return {
                 ...state,
-                contatoRemovido: action.contatoRemovido
+                contatoRemovidoId: action.contatoRemovidoId
             }
 
         default:

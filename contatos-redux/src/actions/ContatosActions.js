@@ -29,17 +29,16 @@ export const mudaTextoTelefone = e => ({
 export const clickButton = item => {
     return async (dispatch) => {
         let contato = await ContatosService.adicionar(item);
-        console.log(contato);
         dispatch({
             type: CONTATO_INCLUIR,
-            novoContato: item
+            novoContato: contato
         });
     }
 }
 
 export const removeContato = id => {
     return async (dispatch) => {
-        await ContatosService.remover(id);
+        let contato = await ContatosService.remover(id);
         dispatch({
             type: CONTATO_REMOVER,
             contatoRemovidoId: id

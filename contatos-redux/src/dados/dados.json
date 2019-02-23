@@ -7,28 +7,34 @@
       "id": 1
     },
     {
-      "imagem": "./imagens/imagem3.jpg",
-      "nome": "Torta de Limão",
-      "telefone": "1196846543541",
-      "id": 3
-    },
-    {
-      "nome": "Reduxzada2",
-      "telefone": "1198465121",
-      "imagem": "./imagens/imagem2.jpg",
-      "id": 4
-    },
-    {
-      "nome": "Reduxzada2",
-      "telefone": "1198465121",
-      "imagem": "./imagens/imagem2.jpg",
+      "nome": "ReduxAdds",
+      "telefone": "11",
+      "imagem": "./imagens/imagem1.jpg",
       "id": 5
     },
     {
-      "nome": "ada",
-      "telefone": "1196854651",
-      "imagem": "./imagens/imagem4.jpg",
-      "id": 6
+      "nome": "ReduxAdds",
+      "telefone": "11984651325",
+      "imagem": "./imagens/imagem1.jpg",
+      "id": 7
+    },
+    {
+      "nome": "ReduxAdds",
+      "telefone": "11984651325",
+      "imagem": "",
+      "id": 8
+    },
+    {
+      "nome": "ReduxAdds",
+      "telefone": "11984651325",
+      "imagem": "",
+      "id": 9
+    },
+    {
+      "nome": "ReduxAdds",
+      "telefone": "11984651325",
+      "imagem": "./imagens/imagem1.jpg",
+      "id": 10
     }
   ]
 }

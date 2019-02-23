@@ -7,6 +7,9 @@ import { bindActionCreators } from 'redux';
 class ListaContato extends Component {
 
     componentDidUpdate (nextProps) {
+        console.log(nextProps);
+        console.log(this.props);
+        
         if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) {
             this.props.listar();
         }
@@ -36,7 +39,7 @@ class ListaContato extends Component {
 const mapStateToProp = state => ({
     contatos: state.ContatosReducer.contatos,
     novoContato: state.ContatosReducer.novoContato,
-    contatoRemovido: state.ContatosReducer.contatoRemovido
+    contatoRemovidoId: state.ContatosReducer.contatoRemovidoId
 
 })
 
