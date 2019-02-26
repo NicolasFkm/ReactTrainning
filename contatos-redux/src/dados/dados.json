@@ -21,20 +21,8 @@
     {
       "nome": "ReduxAdds",
       "telefone": "11984651325",
-      "imagem": "",
+      "imagem": "./imagens/imagem3.jpg",
       "id": 8
-    },
-    {
-      "nome": "ReduxAdds",
-      "telefone": "11984651325",
-      "imagem": "",
-      "id": 9
-    },
-    {
-      "nome": "ReduxAdds",
-      "telefone": "11984651325",
-      "imagem": "./imagens/imagem1.jpg",
-      "id": 10
     }
   ]
 }
